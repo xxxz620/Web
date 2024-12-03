@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>问答社区帖子编辑页面</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+    body{
+      background-image: url("https://img1.wallspic.com/crops/1/7/1/6/6/166171/166171-macos_12_monterey_blue_modd_official_stock_wallpaper_6k_resolution_light-3840x2160.jpg");
+      margin: 0;
+      overflow: auto;
+    }
+    .container { margin: 20px; }
+    .input-section { margin-bottom: 20px; }
+    .sortable-list li { margin: 10px 0; padding: 5px; background-color: #f3f3f3; border: 1px solid #ddd; cursor: move; }
+    .sortable-list li.dragging { opacity: 0.5; }
+    .actions { margin-top: 20px; }
+    #mediaPreview {
+      max-width: 400px;
+      max-height: 400px;
+      display: none;
+      cursor: move;
+    }
+
+    header {
+      background-image: url("data:image/png;base64,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");
+      background-size: auto   ;
+      background-color: yellow;
+      color: red;
+      padding: 10px;
+      text-align: center;
+    }
+
+    #fileList {
+      list-style-type: none;
+      padding: 0;
+    }
+    h1{
+      font-family: 华文琥珀;
+      color: darksalmon;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 3px;
+      font-size: 4em;
+    }
+    #fileList li {
+      cursor: pointer;
+      padding: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 5px;
+      background-color: #f5f5f5;
+    }
+    .top{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 50px; /* 100% 视口高度，确保居中在视口中央 */
+      background-color: #007BFF;
+    }
+    label{
+      background-color: #684caf;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 10px;
+    }
+    .top_text{
+      font-size: 18px;
+      text-align: center;
+      font-weight: bolder;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 添加阴影 */
+      color: #ecefef; /* 设置文字颜色 */
+      letter-spacing: 2px; /* 设置文字间距 */
+    }
+    input[type="file"]{
+      display: none;
+    }
+    button{
+      background-color: #684caf;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 10px;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>手机产品论坛</h1>
+</header>
+<div class="container">
+  <div class="top">
+    <div class="top_text">发布问题</div>
+  </div>
+  <div class="input-section">
+    <textarea id="postContent" rows="4" placeholder="请输入问题文本" style="width: 100%;"></textarea>
+    <label><input type="file" id="fileInput" multiple accept="image/*,video/*,audio/*" onchange="handleFiles()">上传文件</label>
+    <ul id="fileList"></ul>
+  </div>
+  <div class="actions">
+    <button id="postSubmit">发布</button>
+    <button id="postEdit">撤回</button>
+    <a href="登录后后(1).html">
+    <button >回到首页</button>
+    </a>
+    <!-- 更多的操作按钮可以在这里添加 -->
+  </div>
+</div>
+<footer>
+  &copy; 2023 产品论坛
+</footer>
+<script>
+  $(function() {
+    $("#fileList").sortable();
+  });
+  var fileArray = [];
+  function handleFiles() {
+    var files = document.getElementById('fileInput').files;
+    var fileList = document.getElementById('fileList');
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      fileArray.push(file);
+      var fileDiv = document.createElement('div');
+      fileDiv.style.width = "40%";
+      fileDiv.style.height = "20%";
+
+      // 创建相应的标签展示文件内容
+      var mediaTag;
+      if (file.type.match('image.*')) {
+        mediaTag = document.createElement('img');
+      } else if (file.type.match('video.*')) {
+        mediaTag = document.createElement('video');
+        mediaTag.controls = true;
+      } else if (file.type.match('audio.*')) {
+        mediaTag = document.createElement('audio');
+        mediaTag.controls = true;
+      }
+      else {
+        alert('非法类型文件输入，请重新选择文件。');
+        return;
+      }
+      fileDiv.onclick = function() { previewFile(file,mediaTag); };
+      var deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+      deleteButton.onclick = function() {
+        deleteFile(fileDiv);
+      };
+      // 将标签添加到列表项
+      fileDiv.appendChild(deleteButton);
+      fileDiv.appendChild(mediaTag);
+      fileList.appendChild(fileDiv);
+
+      // 显示媒体文件
+      previewFile(file, mediaTag);
+    }
+  }
+  function deleteFile(FileDiv) {
+    var fileListDiv = document.getElementById('fileList');
+    fileListDiv.removeChild(FileDiv);// 从数组中删除文件
+    updateFileList(); // 更新文件列表显示
+  }
+  function updateFileList() {
+    var fileListDiv = document.getElementById('fileList');
+    fileListDiv.value = ''; // 清空文件列表
+    var fileInputDiv = document.getElementById('fileInput');
+    fileInputDiv.value = '';
+    fileArray = [];
+    handleFiles();
+  }
+  // 添加预览功能
+  function previewFile(file, mediaTag) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      mediaTag.src = e.target.result;
+      mediaTag.style.width = "100%";
+      mediaTag.style.height = "100%";
+    };
+    reader.readAsDataURL(file);
+  }
+  // 添加发布功能
+  var db;
+
+  // 打开或创建 IndexedDB 数据库
+  var request = indexedDB.open('myDatabase', 1);
+
+  // 数据库打开/创建成功的回调函数
+  request.onsuccess = function (event) {
+    db = event.target.result;
+    console.log('IndexedDB opened successfully');
+  };
+
+  // 数据库打开/创建失败的回调函数
+  request.onerror = function (event) {
+    console.error('Error opening IndexedDB', event);
+  };
+  // 数据库升级（首次创建或版本升级）的回调函数
+  request.onupgradeneeded = function (event) {
+    var db = event.target.result;
+
+    // 创建存储文本数据的对象仓库
+    var textStore = db.createObjectStore('textStore', { keyPath: 'id' });
+
+    // 创建存储媒体数据的对象仓库
+    var mediaStore = db.createObjectStore('mediaStore', { keyPath: 'id' });
+  };
+  document.getElementById('postSubmit').addEventListener('click', function() {
+    var textareaContent = document.getElementById('postContent').value;
+
+    var files = fileArray;
+
+    if (textareaContent || files) {
+      var timestamp = new Date().getTime();
+
+      if (files) {
+        saveDataToIndexedDB('mediaStore', { id: timestamp, data: files });
+        // 保存文件数据到 IndexedDB
+        console.log("save successfully");
+      }
+    } else {
+      console.log('No data to save');
+    }
+    if (textareaContent) {
+      // 保存 textarea 内容到 IndexedDB
+      saveDataToIndexedDB('textStore', { id: timestamp, content: textareaContent });
+    }
+    alert('帖子已发布。'); // 这里需要实际的发布逻辑
+  });
+  function saveDataToIndexedDB(objectStoreName, data) {
+    var transaction = db.transaction([objectStoreName], 'readwrite');
+    var objectStore = transaction.objectStore(objectStoreName);
+
+    var request = objectStore.put(data);
+
+    request.onsuccess = function () {
+      console.log('Data saved to IndexedDB:', data);
+    };
+
+    request.onerror = function (event) {
+      console.error('Error saving data to IndexedDB', event);
+    };
+  }
+  // 添加修改帖子功能
+  document.getElementById('postEdit').addEventListener('click', function() {
+    function deleteFromIndexedDB() {
+      // 删除文本区域数据
+      deleteDataFromIndexedDB('textStore');
+
+      // 删除文件数据
+      deleteDataFromIndexedDB('mediaStore');
+    }
+
+    function deleteDataFromIndexedDB(objectStoreName) {
+      // 打开事务并获取对象存储空间
+      var transaction = db.transaction([objectStoreName], 'readwrite');
+      var objectStore = transaction.objectStore(objectStoreName);
+
+      // 打开游标，按默认排序（主键的顺序）遍历对象存储空间
+      var cursorRequest = objectStore.openCursor();
+
+      var latestData = null;
+
+      cursorRequest.onsuccess = function(event) {
+        var cursor = event.target.result;
+
+        if (cursor) {
+          // 记录当前数据
+          latestData = cursor.value;
+
+          // 继续遍历
+          cursor.continue();
+        } else {
+          // 所有数据已遍历完，删除最新上传的数据
+          if (latestData) {
+            objectStore.delete(latestData.id);
+            console.log('Latest data deleted from IndexedDB');
+          } else {
+            console.log('No data to delete');
+          }
+        }
+      };
+
+      cursorRequest.onerror = function(event) {
+        console.error('Error deleting latest data from IndexedDB:', event.target.error);
+      };
+
+      transaction.oncomplete = function() {
+        db.close();
+      };
+    }
+    deleteFromIndexedDB();
+    alert('成功删除。');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+       body{
+      background-image: url("https://img1.wallspic.com/crops/1/7/1/6/6/166171/166171-macos_12_monterey_blue_modd_official_stock_wallpaper_6k_resolution_light-3840x2160.jpg");
+      margin: 0;
+      overflow: auto;
+    }
+    footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        header {
+      background-image: url("data:image/png;base64,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");
+      background-size: auto   ;
+      background-color: yellow;
+      color: red;
+      padding: 10px;
+      text-align: center;
+    }
+    h1{
+      font-family: 华文琥珀;
+      color: darksalmon;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+      letter-spacing: 3px;
+      font-size: 4em;
+    }
+      </style>
+	<title>问题详情</title>
+      <script>
+	var param1;
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // 获取查询字符串
+            var queryString = window.location.search;
+
+            // 解析查询字符串为对象
+            var params = new URLSearchParams(queryString);
+
+            // 获取参数值
+            param1 = params.get('param1');
+            
+
+        });
+		
+		
+		  var db;
+
+  var db;
+
+  // 打开或创建 IndexedDB 数据库
+  var request = indexedDB.open('myDatabase', 1);
+
+  // 数据库打开/创建成功的回调函数
+  request.onsuccess = function (event) {
+    db = event.target.result;
+    console.log('IndexedDB opened successfully');
+    var myArray = [];
+    // 读取并显示文本数据
+    loadAllTextFromIndexedDB('textStore', myArray);
+    // 读取并显示媒体数据
+    loadAllFileFromIndexedDB('mediaStore', myArray);
+  };
+
+  // 数据库打开/创建失败的回调函数
+  request.onerror = function (event) {
+    console.error('Error opening IndexedDB', event);
+  };
+
+  // 数据库升级（首次创建或版本升级）的回调函数
+  request.onupgradeneeded = function (event) {
+    var db = event.target.result;
+
+    // 创建存储文本数据的对象仓库
+    var textStore = db.createObjectStore('textStore', { keyPath: 'id' });
+
+    // 创建存储媒体数据的对象仓库
+    var mediaStore = db.createObjectStore('mediaStore', { keyPath: 'id' });
+  };
+
+  // 新增的函数，用于加载文本数据
+  function loadAllTextFromIndexedDB(objectStoreName, myarray) {
+    var transaction = db.transaction([objectStoreName], 'readonly');
+    var objectStore = transaction.objectStore(objectStoreName);
+    var request = objectStore.openCursor();
+    var timestamp;
+    request.onsuccess = function () {
+
+      var cursor = request.result;
+
+      if (cursor) {
+        timestamp = cursor.key;
+        myarray.push(timestamp);
+        // 处理每个数据项
+
+        displayDataInList_text(timestamp,cursor.value.content);
+        // 移动到下一个数据项
+        cursor.continue();
+      }
+    };
+
+    request.onerror = function (event) {
+      console.error('Error loading data from IndexedDB', event);
+    };
+  }
+  function loadAllFileFromIndexedDB(objectStoreName, myarray) {
+    var transaction = db.transaction([objectStoreName], 'readonly');
+    var objectStore = transaction.objectStore(objectStoreName);
+    var request = objectStore.openCursor();
+    var i = 0;
+    request.onsuccess = function () {
+
+      var cursor = request.result;
+
+      if (cursor) {
+        if (i<myarray.length){
+          for(var j=0;j<cursor.value.data.length;j++)
+          {
+          displayMediaData(cursor.value.data[j],myarray[i]);
+          }i++;
+        }
+        // 移动到下一个数据项
+        cursor.continue();
+      }
+    };
+
+    request.onerror = function (event) {
+      console.error('Error loading data from IndexedDB', event);
+    };
+  }
+  // 新增的函数，用于显示媒体数据
+  function displayMediaData(data1,id) {
+  if(id==param1)
+    {var listItem = document.getElementById(id);
+    var reader = new FileReader();
+    reader.onload = function (event){
+      var data = String(event.target.result);
+
+      if (data1) {
+        var displayMedia = document.createElement('div');
+
+        displayMedia.style.width = "20%";
+        displayMedia.style.height = "100%";
+        if (data.startsWith('data:image')) {
+          // 显示图像
+          var img = document.createElement('img');
+          img.src = data;
+          img.style.maxWidth = "100%";
+          img.style.height = "100%";
+          displayMedia.appendChild(img);
+        } else if (data[0].startsWith('data:audio')) {
+          // 显示音频
+          var audio = document.createElement('audio');
+          audio.src = data;
+          audio.controls = true;
+          displayMedia.appendChild(audio);
+        } else if (data[0].startsWith('data:video')) {
+          // 显示视频
+          var video = document.createElement('video');
+          video.src = data;
+          video.style.maxWidth = "100%";
+          video.style.height = "100%";
+          video.controls = true;
+          displayMedia.appendChild(video);
+        }
+        listItem.appendChild(displayMedia);
+      } else {
+        console.log('No media data found in IndexedDB');
+      }
+    }
+    reader.readAsDataURL(data1);
+	}
+  }
+
+  //创建列表
+  function displayDataInList_text(id, textareaContent) {
+  if(id==param1){
+      var dataList = document.getElementById('dataList');  
+  
+    // 创建一个新的列表项，并设置其ID  
+    var listItem = document.createElement('div');  
+    listItem.id = id;   
+    listItem.style.justifyContent = "center";  
+    listItem.style.alignContent = "center";  
+    listItem.style.height = "100%";  
+    listItem.style.width = "100%";   
+    listItem.classList.add('list-item');  
+  
+    // 创建用于textarea内容的div  
+    var textareaDiv = document.createElement('div');  
+  
+
+    textareaDiv.style.textAlign = "center";  
+    textareaDiv.style.width = "100%";  
+    textareaDiv.style.height = "100%";  
+     textareaDiv.textContent = textareaContent;
+    textareaDiv.style.backgroundColor = "white";  
+    textareaDiv.classList.add('center-text');  
+  
+    // 创建一个<a>元素，并设置其属性和内容为textareaDiv的文本内容  
+    
+  
+    // 将divs添加到列表项中，然后将列表项添加到列表中  
+    listItem.appendChild(textareaDiv);  
+    dataList.appendChild(listItem);  
+	
+	}
+  }
+  document.querySelector('input[type="text"]').addEventListener('input', function() {
+    var searchTerm = this.value.toLowerCase();
+    var searchResultsContainer = document.getElementById('searchResults');
+    searchResultsContainer.innerHTML = ''; // 清空搜索结果容器
+
+    // 遍历问题列表
+    var listItems = document.querySelectorAll('.list-item');
+    var matches = [];
+
+    listItems.forEach(function(item) {
+      var textareaContent = item.querySelector('.center-text').textContent.toLowerCase();
+      if (textareaContent.includes(searchTerm)) {
+        matches.push({ id: item.id, content: textareaContent });
+      }
+    });
+
+    // 显示匹配到的结果
+    matches.forEach(function(match) {
+      var resultItem = document.createElement('div');
+      resultItem.textContent = match.content;
+      resultItem.style.borderBottom = '1px solid #ccc';
+      resultItem.style.padding = '5px';
+      resultItem.style.cursor = 'pointer';
+
+      resultItem.addEventListener('click', function() {
+        // 点击搜索结果时将结果显示在弹窗中
+        displayMediaData({ data: null }, match.id); // 假设这个函数可以显示问题详情
+        searchResultsContainer.style.display = 'none'; // 隐藏搜索结果容器
+      });
+
+      searchResultsContainer.appendChild(resultItem);
+    });
+
+    // 控制搜索结果容器的显示与隐藏
+    if (matches.length > 0) {
+      searchResultsContainer.style.display = 'block';
+    } else {
+      searchResultsContainer.style.display = 'none';
+    }
+  });
+  // 获取canvas元素和绘图上下文
+  const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+ 
+        // 设置canvas的宽度和高度
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+ 
+        // 粒子对象
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 3 + 1; // 随机大小
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`; // 随机颜色
+                this.velocityY = Math.random() * 3 + 1; // 随机竖直速度
+            }
+ 
+            // 更新粒子的位置
+            update() {
+                this.y += this.velocityY;
+ 
+                // 当粒子到达画布底部时，重新放置到画布顶部
+                if (this.y > canvas.height) {
+                    this.y = 0;
+                }
+            }
+ 
+            // 绘制粒子
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+        }
+ 
+        // 创建粒子数组
+        const particles = [];
+        const numParticles = 100;
+ 
+        // 初始化粒子
+        for (let i = 0; i < numParticles; i++) {
+            const x = Math.random() * canvas.width;
+            const y = Math.random() * canvas.height;
+            particles.push(new Particle(x, y));
+        }
+ 
+        // 动画循环函数
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+ 
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+ 
+            requestAnimationFrame(animate);
+        }
+ 
+        // 启动动画
+        animate();
+		
+
+
+    </script>
+</head>
+<body>
+  <header>
+    <h1>问题详情</h1>
+  </header>
+    <section>
+       <div class="list-container" id="dataList"></div>
+    </section>
+    <canvas id="myCanvas"></canvas>
+    <footer>
+  &copy; 2023 产品论坛
+</footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <style>
+        input[type="file"]{
+            display: none;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url(personback.jpg);
+            background-size: 100% 100% ;
+                background-attachment: fixed;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        header, .profile, .settings {
+            margin-bottom: 20px;
+        }
+        header {
+            text-align: center;
+        }
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        .profile-info {
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px;
+        }
+        .settings label, .settings input, .settings button {
+            display: block;
+            margin-top: 10px;
+        }
+        button {
+            cursor: pointer;
+        }
+        .image-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .image-item {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            cursor: grab;
+        }
+        buttom
+        {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #fileLabel
+        {
+            background-color: #684caf;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 10px;
+        }
+        img {
+            max-width: 100%;
+            max-height: 150px;
+        }
+
+        #dropzone {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #dropzone:hover {
+            border-color: #007BFF;
+        }
+
+        /* 新增样式 */
+        #upload-button {
+            display: block;
+            width: 200px;
+            height: 40px;
+            background-color: #FF0000;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="container"font="STHupo">
+        <header>
+            <h1 >个人中心</h1>
+        </header>
+        <section class="profile">
+           <div id="profile-image">
+                
+                <img id="old-image" src="person.jpg"></img>
+           </br>
+            </div>&nbsp;&nbsp;&nbsp
+            <label type="file" id = "fileLabel"><input type="file" value="niwo" name="想换个头" id="fileInput" display="none" onchange="imagechange()">更改头像</label>
+        </br>
+            <div class="profile-info">
+                <p>昵称: <span id="nickname">默认昵称</span></p>
+                <p>签名: <span id="signature">默认签名</span></p>
+               
+                <buttom type="submit" value="我想更改" onclick="getchange()">我想更改</buttom>
+                <buttom type="submit" value="个人相册" onclick="headchange()">个人相册</buttom>
+                
+            
+                
+
+               <a href="登录后后(1).html">
+                <buttom type="submit" value="回到首页" > 回到首页</buttom>
+                </a>
+            </div>
+        </section>
+    </div>
+    <div id="login-form" style="display: none;" align="center" bgcolor="black">
+        <section class="settings">
+            <h2>设置</h2>
+            <form id="profileForm">
+                <label for="newNickname" bgcolor="">新昵称:</label>
+                <input type="text" id="newNickname" name="newNickname">
+                
+                <label for="newSignature">新签名:</label>
+                <input type="text" id="newSignature" name="newSignature">
+           
+                 
+                <button type="submit" onclick="getsubmit()">更新资料</button>
+            </form>
+        </section>
+
+    </div>
+     <div class="image-list" id="imageList">
+
+    </div>
+    <footer>
+        &copy; 2023 产品论坛
+    </footer>
+<div id="head-change" style="display: none;">
+    <input type="file" id="fileInput" accept=".jpg, .jpeg, .png" style="display: none;">
+   
+    <div id="dropzone">
+        拖拽图片到此处上传
+    </div>
+    <button onclick="changesucceed()"> 上传完成</button>
+</div>
+
+
+    <script >
+        var what;
+        what=window.localStorage.getItem('username');
+       //alert( document.getElementById('name'));
+       value=what;
+
+        function getchange(){
+         var loginForm = document.getElementById('login-form');
+         loginForm.style.display = (loginForm.style.display === 'none' || loginForm.style.display === '') ? 'block' : 'none';
+        document.getElementById('profileForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // 这里可以添加AJAX请求来更新用户资料
+            var newNickname = document.getElementById('newNickname').value;
+            var newSignature = document.getElementById('newSignature').value;
+            
+            // 更新页面上的昵称和签名
+            document.getElementById('nickname').textContent = newNickname;
+            document.getElementById('signature').textContent = newSignature;
+        });
+    }
+    function getsubmit()
+    {
+        var loginForm = document.getElementById('login-form');
+        loginForm.style.display ='none';
+    }
+    </script>
+   
+   <script>
+    function headchange()
+    {
+        var loginForm = document.getElementById('head-change');
+         loginForm.style.display = (loginForm.style.display === 'none' || loginForm.style.display === '') ? 'block' : 'none';
+
+        const fileInput = document.getElementById('fileInput');
+        const imageList = document.getElementById('imageList');
+        const dropzone = document.getElementById('dropzone');
+
+        fileInput.addEventListener('change', handleFileUpload);
+
+        dropzone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dropzone.style.borderColor = '#007BFF';
+        });
+
+        dropzone.addEventListener('dragleave', () => {
+            dropzone.style.borderColor = '#ccc';
+        });
+
+        dropzone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dropzone.style.borderColor = '#ccc';
+
+            const files = e.dataTransfer.files;
+            handleFileUpload({ target: { files } });
+        });
+
+        function handleFileUpload(event) {
+            const files = event.target.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+
+                if (file.type.match(/image.*/)) {
+                    const reader = new FileReader();
+
+                    reader.onload = function (e) {
+                        const imageItem = document.createElement('div');
+                        imageItem.classList.add('image-item');
+
+                        const image = document.createElement('img');
+                        image.src = e.target.result;
+                        image.alt = 'Uploaded Image';
+
+                        const removeButton = document.createElement('button');
+                        removeButton.textContent = 'Remove';
+                        removeButton.addEventListener('click', () => {
+                            imageItem.remove();
+                        });
+
+                        imageItem.appendChild(image);
+                        imageItem.appendChild(removeButton);
+
+                        imageList.appendChild(imageItem);
+
+                        // 初始化拖拽排序
+                        new Sortable(imageList, {
+                            animation: 150,
+                            handle: '.image-item',
+                        });
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            }
+        }
+    }
+    function changesucceed()
+    {
+        var loginForm = document.getElementById('head-change');
+        loginForm.style.display ='none';
+    }
+    function imagechange(){
+    var fileDiv = document.getElementById('profile-image');
+    var file = document.getElementById('fileInput').files[0];
+    var fileImg = document.createElement('img');
+    var q = document.getElementById('old-image');    
+
+    var reader = new FileReader();
+    reader.onload = function (event){
+        fileImg.src = String(event.target.result);
+        fileImg.style.width = "100px";
+        fileImg.style.height = "100px";
+        fileImg.style.borderRadius = "50%";
+    }
+    reader.readAsDataURL(file);
+    fileDiv.removeChild(q);
+    fileDiv.appendChild(fileImg);
+    document.getElementById('fileInput').value = '';
+}
+    </script>
+</body>
+</html>
